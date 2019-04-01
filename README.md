@@ -6,4 +6,4 @@ SpringBoot学习相关资料。
 
 内容来源二：微信公众号“程序新视界”中技术文章相关代码部分。
 
-![程序新视界](http://blog.choupangxia.com/card.png)
+![程序新视界](https://github.com/secbr/springboot-all/blob/master/card.png)
