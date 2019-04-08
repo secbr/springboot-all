@@ -12,7 +12,7 @@ public class ConfigController {
 
 	@RequestMapping("/config")
 	public String config(){
-		return "Hello World!" ;
+		return "Hello Config!" ;
 	}
 
 }
