@@ -1,0 +1,11 @@
+2019-12-23 15:48:01.911  INFO 2155 --- [main] com.secbro2.SpringbootLogApplication     : Starting SpringbootLogApplication on ershixiongdeMacBook-Pro.local with PID 2155 (/Users/zzs/develop/projects/springboot-all/springboot-log/target/classes started by zzs in /Users/zzs/develop/projects/springboot-all/springboot-log)
+2019-12-23 15:48:01.920  INFO 2155 --- [main] com.secbro2.SpringbootLogApplication     : No active profile set, falling back to default profiles: default
+2019-12-23 15:48:02.804  INFO 2155 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-23 15:48:02.812  INFO 2155 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-23 15:48:02.812  INFO 2155 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2019-12-23 15:48:02.869  INFO 2155 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-12-23 15:48:02.870  INFO 2155 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 889 ms
+2019-12-23 15:48:03.011  INFO 2155 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-23 15:48:03.178  INFO 2155 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-23 15:48:03.182  INFO 2155 --- [main] com.secbro2.SpringbootLogApplication     : Started SpringbootLogApplication in 1.694 seconds (JVM running for 2.255)
+2019-12-23 15:48:16.127  INFO 2155 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
