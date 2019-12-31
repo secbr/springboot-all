@@ -6,6 +6,6 @@ SpringBoot学习相关资料。
 
 内容来源二：CSDN《SpringBoot教程全家桶》专栏：https://blog.csdn.net/wo541075754/category_9622539.html
 
-内容来源二：微信公众号“程序新视界”中技术文章相关代码部分。
+内容来源三：微信公众号“程序新视界”中技术文章相关代码部分。
 
-![程序新视界](https://github.com/secbr/springboot-all/blob/master/card.png)
+![程序新视界](http://www.choupangxia.com/wp-content/uploads/2019/11/new-card.png)
