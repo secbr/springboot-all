@@ -11,7 +11,8 @@ import java.text.SimpleDateFormat;
  * @version 1.0
  * @date 2019/12/31 5:10 PM
  **/
-@Configuration
+// 暂时注释掉，如果需要则打开该注解
+//@Configuration
 public class JacksonConfig {
 
 	@Bean
