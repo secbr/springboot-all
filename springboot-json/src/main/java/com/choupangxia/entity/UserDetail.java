@@ -2,12 +2,15 @@ package com.choupangxia.entity;
 
 import com.choupangxia.view.View;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
  * @author sec
  * @version 1.0
  * @date 2020/1/1 10:31 PM
  **/
+@JsonNaming(PropertyNamingStrategy.LowerDotCaseStrategy.class)
 public class UserDetail {
 
 	@JsonView(View.BaseView.class)
