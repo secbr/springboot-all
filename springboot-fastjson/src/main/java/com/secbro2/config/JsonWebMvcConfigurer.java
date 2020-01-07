@@ -15,6 +15,10 @@ import java.util.List;
 @Configuration
 public class JsonWebMvcConfigurer implements WebMvcConfigurer {
 
+	/**
+	 * 自定义base64处理的HttpMessageConverter
+	 * @param converters
+	 */
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.clear();
