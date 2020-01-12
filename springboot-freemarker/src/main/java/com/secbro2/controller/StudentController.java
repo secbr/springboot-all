@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,5 +34,27 @@ public class StudentController {
 
 		model.addAttribute("students", list);
 		return "biz/student";
+	}
+
+	@GetMapping("/hello")
+	public String helloFreemarker(Model model) {
+
+		Student student = new Student();
+		student.setIdNo("No3");
+		student.setName("Tom");
+
+		model.addAttribute("student", student);
+
+		String grade = "A";
+		model.addAttribute("grade", grade);
+
+		// 日期处理
+		model.addAttribute("date", new Date());
+
+		// null值
+		String empty = null;
+		model.addAttribute("empty", empty);
+
+		return "hello";
 	}
 }
