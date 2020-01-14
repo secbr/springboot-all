@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Thymeleaf</title>
+    <style>
+        .red{color: red}
+    </style>
+</head>
+<body>
+<li>
+    普通显示：<h1 th:text="${name}">默认值</h1>
+</li>
+
+<li>
+    普通拼接：<p th:text="'Hello ' + ${name}"></p>
+</li>
+
+<li>
+    简洁拼接：<p th:text="|Hello ${name}|"></p>
+</li>
+
+<li>
+    if条件判断：<a th:if="${isShow == 'true'}" th:href="@{https://www.choupangxia.com/}">官网</a>
+
+    unless条件判断：<a th:unless="${isShow == 'no'}" th:href="@{https://www.choupangxia.com/}">官网</a>
+</li>
+<li>
+    绝对URL：<a th:href="@{https://www.choupangxia.com/(pageNum=${pageNum})}">官网</a>
+    <br>
+    相对URL：<a href="details.html" th:href="@{/order/details(pageNum=${pageNum})}">详情</a>
+</li>
+<li>
+    for循环：
+    <span th:each="language,iterStat : ${languages}">
+        <span th:text="${iterStat.index+1} + '.' + ${language}"></span>
+    </span>
+</li>
+
+<li>
+    三目运算：<input th:value="${isShow == 'true'? '1' : '0'}">
+    <br>
+    三目运算：<input th:value="${isShow eq 'true'? '1' : '0'}">
+</li>
+
+<li>
+    switch使用：
+    <span th:switch="${isShow}">
+        <span th:case="'true'">展示</span>
+        <span th:case="'no'">隐藏</span>
+        <span th:case="*">未知状态</span>
+    </span>
+</li>
+
+<li>
+    设置属性：
+    <span th:attr="class='red'">属性值</span>
+    <br>
+    <span th:attr="id=${id}">设置ID属性</span>
+</li>
+<li>
+    日期格式化：
+    <!--格式化时间-->
+    <p th:text="${#dates.format(date,'yyyy-MM-dd HH:mm:ss')}">Date</p>
+    <!--创建当前时间-->
+    <p th:text="${#dates.createToday()}">Today</p>
+    <!--创建当前时间-->
+    <p th:text="${#dates.createNow()}">Now</p>
+</li>
+<li>
+    字符串处理：
+    <span th:text="${#strings.substring(name,0,5)}"></span>
+</li>
+<li>
+    内联文本：
+    <span>Hello [[name]] !</span>
+</li>
+</body>
+</html>
