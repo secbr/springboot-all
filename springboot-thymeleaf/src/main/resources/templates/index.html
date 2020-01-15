@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Thymeleaf</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}" />
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css"/>-->
+    <script th:src="@{js/test.js}"></script>
+    <!--<script src="js/test.js"></script>-->
+</head>
+<body>
+    <div th:include="layout/header::headerLayout"></div>
+    <button onclick="alertMsg()">Hello</button>
+    <div th:replace="layout/footer::footerLayout"></div>
+    <div th:insert="~{layout/left::leftLayout}"></div>
+    <div th:include="layout/param::paramsLayout(name='Thymeleaf')"></div>
+</body>
+</html>
