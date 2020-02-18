@@ -26,18 +26,26 @@ public class HttpsConfig {
 			protected void postProcessContext(Context context) {
 
 				// 创建安全约束组件
-				SecurityConstraint constraint = new SecurityConstraint();
+				SecurityConstraint constraint1 = new SecurityConstraint();
+				constraint1.setUserConstraint("NONE");
+				SecurityCollection collection1 = new SecurityCollection();
+				collection1.addPattern("/static/");
+				constraint1.addCollection(collection1);
+				context.addConstraint(constraint1);
+
+				SecurityConstraint constraint2 = new SecurityConstraint();
 				// 设置用户约束条件，参数必须以下三种模式：NONE、INTEGRAL、CONFIDENTIAL。
 				// NONE表示被指定的Web资源不需要任何传输保证；
 				// Integral表示客户机与服务器之间传送的数据在传送过程中不会被篡改；
 				// Confidential表示数据在传送过程中被加密。
 				// 大多数情况下，INTEGRAL或CONFIDENTIAL是使用SSL实现。
-				constraint.setUserConstraint("CONFIDENTIAL");
+				constraint2.setUserConstraint("CONFIDENTIAL");
 
-				SecurityCollection collection = new SecurityCollection();
-				collection.addPattern("/");
-				constraint.addCollection(collection);
-				context.addConstraint(constraint);
+				SecurityCollection collection2 = new SecurityCollection();
+				collection2.addPattern("/");
+				constraint2.addCollection(collection2);
+
+				context.addConstraint(constraint2);
 			}
 		};
 
