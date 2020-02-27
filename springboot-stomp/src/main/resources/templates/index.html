@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>基于STOMP模式实现</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <script src="js/stomp.js"></script>
+    <script src="js/sockjs.min.js"></script>
+</head>
+<body class="container" style="width: 70%">
+<h4>基于STOMP模式实现</h4>
+<div class="form-group">
+    <label for="content"></label>
+    <textarea id="content" class="form-control" readonly="readonly" cols="80" rows="15"></textarea>
+</div>
+<div class="form-group">
+    <label for="message">群发消息 &nbsp;</label>
+    <input id="message" value="" class="form-control"/>
+    <div style="margin-top: 10px">
+        <button id="user_exit" class="btn btn-danger">离开</button>
+        <button id="toSend" class="btn btn-info">发送消息</button>
+        <input id="username" th:value="${username}" style="display: none"/>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var stompClient;
+        var userName = $('#username').val();
+
+        // WebSocket的连接地址
+        var socket = new SockJS('http://localhost:8080/simple');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected:' + frame);
+
+            // 客户端订阅消息的目的地址
+            stompClient.subscribe('/topic/hello', function (response) {
+                $('#content').append(JSON.parse(response.body).message + '\n');
+            });
+
+            // 客户端消息发送的目的地址，注册定时任务接收
+            stompClient.subscribe('/topic/callback', function (response) {
+                $('#content').append(response.body + '\n');
+            });
+        });
+
+        // 客户端发送消息到服务器
+        $('#toSend').click(function () {
+            sendMsg();
+        });
+
+        $(document).keyup(function(event){
+            // 回车键事件
+            if(event.keyCode==13){
+                sendMsg();
+            }
+        });
+
+        function sendMsg(){
+            stompClient.send("/hello", {}, JSON.stringify({'name': $('#message').val()}));
+        }
+
+        // 退出
+        $('#user_exit').click(function () {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            $('#content').append('[' + userName + '] 已离开!');
+            console.log('Disconnected');
+        });
+    })
+</script>
+
+</html>
