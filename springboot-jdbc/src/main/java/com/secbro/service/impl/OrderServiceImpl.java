@@ -42,12 +42,17 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order findById(int id) {
 		return jdbcTemplate.queryForObject("select * from tb_order where id = ?", new Object[]{id},
-				new BeanPropertyRowMapper<Order>(Order.class));
+				new BeanPropertyRowMapper<>(Order.class));
 	}
 
 	@Override
 	public List<Order> findAll() {
 		return jdbcTemplate.query("select * from tb_order", new OrderRowMapper());
+	}
+
+	@Override
+	public List<Order> findAllError() {
+		return jdbcTemplate.queryForList("select * from tb_order",Order.class);
 	}
 
 	/**

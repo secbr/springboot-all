@@ -51,4 +51,10 @@ class OrderServiceTest {
 		List<Order> list = orderService.findAll();
 		log.info("所有订单信息：{}", list);
 	}
+
+	@Test
+	void findAllError(){
+		List<Order> list = orderService.findAllError();
+		log.info("所有订单信息：{}", list);
+	}
 }

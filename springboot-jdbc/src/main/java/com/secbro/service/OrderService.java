@@ -46,4 +46,12 @@ public interface OrderService {
 	 * @return 用户列表
 	 */
 	List<Order> findAll();
+
+
+	/**
+	 * queryForList错误使用示范
+	 * @return
+	 */
+	List<Order> findAllError();
+
 }
