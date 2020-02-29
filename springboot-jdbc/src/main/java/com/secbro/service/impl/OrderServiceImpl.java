@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> findAll() {
 		return jdbcTemplate.query("select * from tb_order", new OrderRowMapper());
 	}
-	
+
 	/**
 	 * RowMapper 可以将数据中的每一行数据封装成用户定义的类，实现RowMapper接口的mapRow方法
 	 */
@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
 			// 对数据的返回处理
 			Order order = new Order();
 			order.setId(rs.getInt("id"));
-			order.setOrderNo(rs.getString("orderNo"));
+			order.setOrderNo(rs.getString("order_no"));
 			order.setAmount(rs.getInt("amount"));
 			return order;
 		}

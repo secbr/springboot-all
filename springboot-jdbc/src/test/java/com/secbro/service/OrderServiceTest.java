@@ -6,10 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author zzs
@@ -24,7 +21,7 @@ class OrderServiceTest {
 	@Test
 	void save() {
 		Order order = new Order();
-		order.setOrderNo("N001");
+		order.setOrderNo("N003");
 		order.setAmount(10000);
 		orderService.save(order);
 	}
@@ -46,18 +43,12 @@ class OrderServiceTest {
 	@Test
 	void findById() {
 		Order order = orderService.findById(3);
-		log.info("订单信息：{}",order);
+		log.info("订单信息：{}", order);
 	}
 
 	@Test
 	void findAll() {
 		List<Order> list = orderService.findAll();
-		log.info("所有订单信息：{}",list);
-	}
-
-	@Test
-	void findAllByCustom() {
-		List<Order> list =orderService.findAllByCustom();
-		log.info("所有订单信息：{}",list);
+		log.info("所有订单信息：{}", list);
 	}
 }
