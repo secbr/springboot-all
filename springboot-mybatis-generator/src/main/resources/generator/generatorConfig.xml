@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="MySql" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <!--数据库连接配置-->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/spring"
+                userId="root"
+                password="genesis_123" />
+
+        <!--指定自动生成的POJO位置-->
+        <javaModelGenerator targetPackage="com.secbro.model" targetProject="src/main/java"></javaModelGenerator>
+
+        <!--指定自动生成的mapper.xml位置-->
+        <sqlMapGenerator targetPackage="mappers"  targetProject="src/main/resources"></sqlMapGenerator>
+
+        <!--指定自动生成的Mapper接口位置-->
+        <javaClientGenerator targetPackage="com.secbro.mapper" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
+
+        <!--要生成的表名称-->
+        <table tableName="tb_order" domainObjectName="Order">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"></generatedKey>
+        </table>
+
+    </context>
+
+</generatorConfiguration>
