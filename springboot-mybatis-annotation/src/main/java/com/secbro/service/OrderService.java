@@ -43,6 +43,8 @@ public interface OrderService {
 	 */
 	Order findById(int id);
 
+	Order findById1(int id);
+
 	/**
 	 * 查询所有用户
 	 *

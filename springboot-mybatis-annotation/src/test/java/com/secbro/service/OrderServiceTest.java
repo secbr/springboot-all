@@ -61,4 +61,11 @@ class OrderServiceTest {
 		List<Order> list = orderService.findAll();
 		log.info("所有订单信息：{}", list);
 	}
+
+	@org.junit.jupiter.api.Order(6)
+	@Test
+	void findById1() {
+		Order order = orderService.findById1(3);
+		log.info("订单信息：{}", order);
+	}
 }

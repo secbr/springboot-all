@@ -49,13 +49,23 @@ public interface OrderMapper {
 	Order findById(int id);
 
 	/**
+	 * 根据ID查询
+	 *
+	 * @param id 订单id
+	 * @return 订单详情
+	 */
+	@Select("SELECT * FROM tb_order WHERE id = #{id}")
+//	@ResultMap("BaseUserMap")
+	Order findById1(int id);
+
+	/**
 	 * 查询所有用户
 	 *
 	 * @return 用户列表
 	 */
 	@Select("SELECT * FROM tb_order")
-	@Results({
+	/*@Results(id="BaseUserMap",value = {
 			@Result(property = "orderNo", column = "order_no")
-	})
+	})*/
 	List<Order> findAll();
 }
