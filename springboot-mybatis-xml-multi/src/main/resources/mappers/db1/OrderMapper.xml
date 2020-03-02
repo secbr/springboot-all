@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.secbro.mapper.db1.OrderMapper" >
+    <resultMap id="BaseResultMap" type="com.secbro.model.Order" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+        <result column="amount" property="amount" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, order_no, amount
+    </sql>
+
+    <insert id="save" parameterType="com.secbro.model.Order">
+        INSERT INTO
+       		tb_order
+       		(order_no,amount)
+       	VALUES
+       		(#{orderNo}, #{amount})
+
+    </insert>
+
+    <update id="update" parameterType="com.secbro.model.Order">
+        UPDATE
+          tb_order
+        <set>
+            <if test="orderNo != null">order_no = #{orderNo},</if>
+            <if test="amount != null">amount = #{amount},</if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+      DELETE
+      FROM tb_order
+      WHERE id =#{id}
+    </delete>
+
+    <select id="findById" parameterType="int" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM tb_order
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM tb_order
+    </select>
+
+
+</mapper>
