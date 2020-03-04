@@ -69,4 +69,15 @@ class OrderDaoTest {
 
 	}
 
+	@Test
+	void testCustomMethod(){
+		int count = orderDao.countByAmount(6666);
+		log.info("count:{}",count);
+		List<Order> list = orderDao.findByOrderNo("N6666");
+		log.info("list:{}",list);
+
+		list = orderDao.findByAmount(6666);
+		log.info("list:{}",list);
+	}
+
 }
