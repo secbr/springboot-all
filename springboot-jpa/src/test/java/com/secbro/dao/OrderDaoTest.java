@@ -80,4 +80,30 @@ class OrderDaoTest {
 		log.info("list:{}",list);
 	}
 
+	/**
+	 * JPQL查询示例
+	 */
+	@Test
+	void testJPQLQuery(){
+		List<Order> list = orderDao.findByPreNo("N");
+		log.info("list:{}",list);
+	}
+
+	/**
+	 * 原生SQL语句查询
+	 */
+	@Test
+	void testNativeQuery(){
+		List<Order> list = orderDao.findByPreNoNative("N");
+		log.info("list:{}",list);
+	}
+
+	/**
+	 * 预定义SQL语句查询
+	 */
+	@Test
+	void testPreNamedQuery(){
+		List<Order> list = orderDao.findByOrderNoAndAmt("N6666",6666);
+		log.info("list:{}",list);
+	}
 }

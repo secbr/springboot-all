@@ -2,7 +2,15 @@ package com.secbro.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Transient;
+import javax.persistence.GenerationType;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 /**
  * 注解：@Entity
@@ -21,6 +29,10 @@ import javax.persistence.*;
  **/
 @Data
 @Entity
+@NamedQueries(
+		@NamedQuery(name = "Order.findByOrderNoAndAmt",query = "select o from Order o where o.orderNo = ?1 and o" +
+				".amount > ?2")
+)
 @Table(name = "tb_order")
 public class Order {
 
@@ -46,10 +58,10 @@ public class Order {
 	 * length：表示字段的长度；
 	 * precision属性和scale属性表示精度；
 	 */
-	@Column(name = "order_no", nullable = false, length = 32,columnDefinition = "varchar(64) default ''")
+	@Column(name = "order_no", nullable = false, length = 32, columnDefinition = "varchar(64) default ''")
 	private String orderNo;
 
-	@Column(name = "amount", nullable = false,columnDefinition = "int default 1")
+	@Column(name = "amount", nullable = false, columnDefinition = "int default 1")
 	private int amount;
 
 	@Transient
