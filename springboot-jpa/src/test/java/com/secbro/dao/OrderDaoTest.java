@@ -59,51 +59,60 @@ class OrderDaoTest {
 		Order paramOrder = new Order();
 		paramOrder.setAmount(6666);
 		ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("id");
-		Example<Order> example = Example.of(paramOrder,matcher);
+		Example<Order> example = Example.of(paramOrder, matcher);
 		orders = orderDao.findAll(example);
 		log.info("根据Example查询：{}", orders);
 
 		// 分页查询
-		Page<Order> orderPage = orderDao.findAll(PageRequest.of(0,10,sort));
+		Page<Order> orderPage = orderDao.findAll(PageRequest.of(0, 10, sort));
 		log.info("分页查询：{}", orderPage.getContent());
 
 	}
 
 	@Test
-	void testCustomMethod(){
+	void testCustomMethod() {
 		int count = orderDao.countByAmount(6666);
-		log.info("count:{}",count);
+		log.info("count:{}", count);
 		List<Order> list = orderDao.findByOrderNo("N6666");
-		log.info("list:{}",list);
+		log.info("list:{}", list);
 
 		list = orderDao.findByAmount(6666);
-		log.info("list:{}",list);
+		log.info("list:{}", list);
 	}
 
 	/**
 	 * JPQL查询示例
 	 */
 	@Test
-	void testJPQLQuery(){
+	void testJPQLQuery() {
 		List<Order> list = orderDao.findByPreNo("N");
-		log.info("list:{}",list);
+		log.info("list:{}", list);
 	}
 
 	/**
 	 * 原生SQL语句查询
 	 */
 	@Test
-	void testNativeQuery(){
+	void testNativeQuery() {
 		List<Order> list = orderDao.findByPreNoNative("N");
-		log.info("list:{}",list);
+		log.info("list:{}", list);
 	}
 
 	/**
 	 * 预定义SQL语句查询
 	 */
 	@Test
-	void testPreNamedQuery(){
-		List<Order> list = orderDao.findByOrderNoAndAmt("N6666",6666);
-		log.info("list:{}",list);
+	void testPreNamedQuery() {
+		List<Order> list = orderDao.findByOrderNoAndAmt("N6666", 6666);
+		log.info("list:{}", list);
+	}
+
+	/**
+	 * 更新操作
+	 */
+	@Test
+	void testModify() {
+		int count = orderDao.modifyAmtById(4, 9999);
+		log.info("修改记录条数:{}", count);
 	}
 }

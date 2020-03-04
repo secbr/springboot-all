@@ -2,7 +2,9 @@ package com.secbro.dao;
 
 import com.secbro.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,4 +34,9 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
 	List<Order> findByPreNoNative(String preString);
 
 	List<Order> findByOrderNoAndAmt(String orderNo, int amount);
+
+	@Transactional
+	@Modifying
+	@Query("update Order o set o.amount= ?2 where o.id = ?1")
+	int modifyAmtById(int id, int amount);
 }
