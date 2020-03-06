@@ -18,11 +18,10 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @SpringBootTest
-class RedisObjectTest {
-
+class RedisHashTest {
 
 	@Resource
-	private RedisTemplate<String, Order> redisTemplate;
+	private RedisTemplate<String, Object> redisTemplate;
 
 	@BeforeEach
 	void init() {
@@ -30,20 +29,25 @@ class RedisObjectTest {
 	}
 
 	/**
-	 * 对象操作
+	 * 新增Hash值
 	 */
 	@Test
 	void testObject() {
+
 		Order order = new Order();
 		order.setId(1);
 		order.setAmount(6666);
-		order.setOrderNo("N110");
-		ValueOperations<String, Order> operations = redisTemplate.opsForValue();
+		order.setOrderNo("N111");
 
-		operations.set("order-1", order);
-		Order cachedOrder = operations.get("order-1");
+		HashOperations<String, String, Order> operations = redisTemplate.opsForHash();
+		operations.put("orders", "userId-1", order);
 
-		Assertions.assertEquals("N110", cachedOrder.getOrderNo());
+		order.setOrderNo("N112");
+		operations.put("orders", "userId-2", order);
+
+		Order cached = operations.get("orders", "userId-1");
+
+		Assertions.assertEquals("N111", cached.getOrderNo());
 	}
 
 	/**
@@ -51,11 +55,8 @@ class RedisObjectTest {
 	 */
 	@Test
 	void testDeleteObject() {
-		redisTemplate.delete("order-1");
-
-		boolean exists = redisTemplate.hasKey("order-1");
-
-		Assertions.assertFalse(exists);
+		redisTemplate.opsForHash().delete("orders", "userId-1");
 	}
+
 
 }
