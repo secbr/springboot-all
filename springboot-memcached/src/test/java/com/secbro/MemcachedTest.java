@@ -1,6 +1,7 @@
 package com.secbro;
 
 import lombok.extern.slf4j.Slf4j;
+import net.rubyeye.xmemcached.Counter;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.junit.jupiter.api.Test;
@@ -52,7 +53,7 @@ public class MemcachedTest {
 	@Test
 	public void testReplace() throws InterruptedException, MemcachedException, TimeoutException {
 		memcachedClient.set("hello", 0, "Hello Memcached!");
-		if(!memcachedClient.replace("hello", 0, "Hello Memcached!")){
+		if (!memcachedClient.replace("hello", 0, "Hello Memcached!")) {
 			System.out.println("替换失败");
 		}
 
@@ -65,7 +66,7 @@ public class MemcachedTest {
 
 		memcachedClient.set("hello", 0, "Memcached");
 
-		memcachedClient.prepend("hello","Hello ");
+		memcachedClient.prepend("hello", "Hello ");
 
 		memcachedClient.append("hello", "!");
 
@@ -81,11 +82,11 @@ public class MemcachedTest {
 		// 设置count初始化值为1
 		String key = "visitCount";
 		memcachedClient.delete(key);
-		memcachedClient.set(key,0,1);
+		memcachedClient.set(key, 0, 1);
 		System.out.println("初始化:" + memcachedClient.get(key));
-		memcachedClient.incr(key,5);
+		memcachedClient.incr(key, 5);
 		System.out.println("加5之后:" + memcachedClient.get(key));
-		memcachedClient.decr(key,1);
+		memcachedClient.decr(key, 1);
 		System.out.println("减1之后:" + memcachedClient.get(key));
 	}
 
@@ -99,17 +100,38 @@ public class MemcachedTest {
 		String key = "visitCountKey";
 		memcachedClient.delete(key);
 
-		memcachedClient.incr(key,1,1);
+		memcachedClient.incr(key, 1, 1);
 		System.out.println("初始化之后:" + memcachedClient.get(key));
-		memcachedClient.incr(key,5);
+		memcachedClient.incr(key, 5);
 		System.out.println("加5之后:" + memcachedClient.get(key));
-		memcachedClient.decr(key,1);
+		memcachedClient.decr(key, 1);
 		System.out.println("减1之后:" + memcachedClient.get(key));
 
-		memcachedClient.decr(key,6);
+		memcachedClient.decr(key, 6);
 		System.out.println("减6之后:" + memcachedClient.get(key));
 	}
 
+	/**
+	 * 封装了incr和decr，用于获取递增或递减数据。
+	 * 示例场景：想获取一个按照顺序递增的数值
+	 */
+	@Test
+	public void testCounter() throws InterruptedException, MemcachedException, TimeoutException {
+
+		String key = "id";
+		memcachedClient.delete(key);
+
+		Counter counter = memcachedClient.getCounter(key, 0);
+		long id = counter.incrementAndGet();
+		System.out.println("id：" + id);
+
+		id = counter.addAndGet(8);
+		System.out.println("id：" + id);
+
+		id = counter.decrementAndGet();
+		System.out.println("id：" + id);
+
+	}
 
 
 }
