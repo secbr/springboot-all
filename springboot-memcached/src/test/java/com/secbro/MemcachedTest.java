@@ -72,5 +72,44 @@ public class MemcachedTest {
 		System.out.println((String) memcachedClient.get("hello"));
 	}
 
+	/**
+	 * incr和decr错误使用示例
+	 */
+	@Test
+	public void testIncreaseError() throws InterruptedException, MemcachedException, TimeoutException {
+
+		// 设置count初始化值为1
+		String key = "visitCount";
+		memcachedClient.delete(key);
+		memcachedClient.set(key,0,1);
+		System.out.println("初始化:" + memcachedClient.get(key));
+		memcachedClient.incr(key,5);
+		System.out.println("加5之后:" + memcachedClient.get(key));
+		memcachedClient.decr(key,1);
+		System.out.println("减1之后:" + memcachedClient.get(key));
+	}
+
+	/**
+	 * incr和decr使用示例，功能类似于AtomicInteger，具有原子操作特性。
+	 */
+	@Test
+	public void testIncrease() throws InterruptedException, MemcachedException, TimeoutException {
+
+		// 设置count初始化值为1
+		String key = "visitCountKey";
+		memcachedClient.delete(key);
+
+		memcachedClient.incr(key,1,1);
+		System.out.println("初始化之后:" + memcachedClient.get(key));
+		memcachedClient.incr(key,5);
+		System.out.println("加5之后:" + memcachedClient.get(key));
+		memcachedClient.decr(key,1);
+		System.out.println("减1之后:" + memcachedClient.get(key));
+
+		memcachedClient.decr(key,6);
+		System.out.println("减6之后:" + memcachedClient.get(key));
+	}
+
+
 
 }
