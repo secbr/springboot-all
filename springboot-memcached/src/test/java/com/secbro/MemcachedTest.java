@@ -2,6 +2,7 @@ package com.secbro;
 
 import lombok.extern.slf4j.Slf4j;
 import net.rubyeye.xmemcached.Counter;
+import net.rubyeye.xmemcached.GetsResponse;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.junit.jupiter.api.Test;
@@ -130,6 +131,27 @@ public class MemcachedTest {
 
 		id = counter.decrementAndGet();
 		System.out.println("id：" + id);
+	}
+
+	/**
+	 * Memcached于1.2.4版本新增CAS(Check and Set)协议类同于Java并发的CAS(Compare and Swap)
+	 */
+	@Test
+	public void testCas() throws InterruptedException, MemcachedException, TimeoutException {
+
+		String key = "amount";
+		memcachedClient.delete(key);
+
+		// 初始化值
+		memcachedClient.set(key, 0, 100);
+
+		GetsResponse<Object> response = memcachedClient.gets(key);
+		long cas = response.getCas();
+		System.out.println("cas：" + cas);
+		int value = (int) response.getValue();
+		memcachedClient.cas(key, 0, 200, cas);
+
+		System.out.println("amount：" + memcachedClient.get(key));
 
 	}
 
