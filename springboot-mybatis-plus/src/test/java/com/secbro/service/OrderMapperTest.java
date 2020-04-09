@@ -1,5 +1,6 @@
 package com.secbro.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.secbro.mapper.OrderMapper;
@@ -25,7 +26,7 @@ class OrderMapperTest {
 	void queryByPage() {
 		//参数一是当前页，参数二是每页个数
 		IPage<Order> orderPage = new Page<>(1, 2);
-		orderPage = orderMapper.selectPage(orderPage, null);
+		orderPage = orderMapper.selectPage(orderPage, new QueryWrapper<Order>().eq("amount",8888));
 		List<Order> list = orderPage.getRecords();
 		for (Order order : list) {
 			System.out.println(order);
