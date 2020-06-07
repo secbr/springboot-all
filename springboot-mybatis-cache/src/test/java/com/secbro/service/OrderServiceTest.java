@@ -27,6 +27,15 @@ class OrderServiceTest {
 	@Resource
 	private SqlSessionFactory sqlSessionFactory;
 
+	/**
+	 * Mybatis的org.apache.ibatis.session.Configuration类中默认配置
+	 */
+	@Test
+	public void showDefaultCacheConfiguration() {
+		System.out.println("一级缓存范围: " + sqlSessionFactory.getConfiguration().getLocalCacheScope());
+		System.out.println("二级缓存是否被启用: " + sqlSessionFactory.getConfiguration().isCacheEnabled());
+	}
+
 	@Test
 	void userFirstCache() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -37,6 +46,7 @@ class OrderServiceTest {
 		}
 	}
 
+//	@Transactional
 	@Test
 	void userFirstCache1() {
 		for (int i = 0; i < 3; i++) {
@@ -51,11 +61,5 @@ class OrderServiceTest {
 			Order order = orderService.findById(1);
 			log.info("订单信息：{}", order);
 		}
-	}
-
-	@Test
-	public void showDefaultCacheConfiguration() {
-		System.out.println("一级缓存范围: " + sqlSessionFactory.getConfiguration().getLocalCacheScope());
-		System.out.println("二级缓存是否被启用: " + sqlSessionFactory.getConfiguration().isCacheEnabled());
 	}
 }
