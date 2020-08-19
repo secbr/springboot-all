@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.secbro2</groupId>
-    <artifactId>springboot-activemq</artifactId>
+    <artifactId>springboot-activemq-topic</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-activemq</name>
+    <name>springboot-activemq-topic</name>
 
     <properties>
         <java.version>1.8</java.version>
