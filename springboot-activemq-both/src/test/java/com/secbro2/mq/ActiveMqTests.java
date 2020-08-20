@@ -19,6 +19,11 @@ public class ActiveMqTests {
 	private Producer producer;
 
 	@Test
+	public void sendSimpleQueueMessage() {
+		this.producer.sendMsg("提现200.00元");
+	}
+
+	@Test
 	public void sendSimpleTopicMessage() {
 		this.producer.sendTopic("提现200.00元");
 	}
