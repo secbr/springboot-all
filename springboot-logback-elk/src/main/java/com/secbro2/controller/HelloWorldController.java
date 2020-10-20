@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
 
-	/**
-	 * http://localhost:8080/hello
-	 */
 	@RequestMapping("/hello")
-	public String hello() {
+	public void hello() {
+		log.debug("Hello world 测试debug日志");
 		log.info("Hello world 测试info日志");
 		log.warn("Hello world 测试warn日志");
 		log.error("Hello world 测试error日志");
-
-		return "hello world!";
 	}
 }

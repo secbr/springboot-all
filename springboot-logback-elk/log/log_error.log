@@ -1,1 +1,2 @@
-2020-10-15 14:44:16.231 beta-log [http-nio-8080-exec-1] ERROR c.s.controller.HelloWorldController - Hello world 测试error日志
+2020-10-19 10:20:30.832 beta-log [http-nio-8080-exec-1] ERROR c.s.controller.HelloWorldController - Hello world 测试error日志
+2020-10-19 22:02:24.085 beta-log [http-nio-8080-exec-1] ERROR c.s.controller.HelloWorldController - Hello world 测试error日志

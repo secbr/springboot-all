@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration scan="true" scanPeriod="60 seconds" debug="false">
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
 
     <contextName>beta-log</contextName>
 
@@ -14,7 +14,8 @@
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
     <!-- 彩色日志格式 -->
-    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) [%X{request-id}] %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
     <!-- 文件输出日志格式 -->
     <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n" />
 
@@ -85,7 +86,7 @@
         </rollingPolicy>
     </appender>
 
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <!--<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>debug</level>
         </filter>
@@ -93,7 +94,7 @@
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
             <customFields>{"project": "springboot-logback-elk"}</customFields>
         </encoder>
-    </appender>
+    </appender>-->
 
     <!--
         注:日志级别有: trace|debug|info|warn|error|fatal
@@ -105,7 +106,7 @@
         <logger name="com" level="debug" />
         <root level="info">
             <appender-ref ref="CONSOLE" />
-            <appender-ref ref="LOGSTASH" />
+<!--            <appender-ref ref="LOGSTASH" />-->
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="ERROR_FILE" />
         </root>
@@ -114,7 +115,7 @@
     <springProfile name="test,prod">
         <logger name="com" level="info" />
         <root level="info">
-            <appender-ref ref="LOGSTASH" />
+<!--            <appender-ref ref="LOGSTASH" />-->
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="ERROR_FILE" />
         </root>
