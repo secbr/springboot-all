@@ -1,10 +1,12 @@
 package com.secbro2.controller;
 
+import com.secbro2.annotation.CurrentUser;
 import com.secbro2.entity.User;
 import com.secbro2.util.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,9 +43,15 @@ public class ArgumentController {
         return userId;
     }
 
-    @PostMapping("/level4")
-    public Integer level4(User user) {
+    @PostMapping("/level3Post")
+    public Integer level3Post(@RequestBody User user) {
         log.info("userId={}", user.getUserId());
+        return user.getUserId();
+    }
+
+    @GetMapping("/level4")
+    public Integer level4(@CurrentUser User user) {
+        log.info("userId={},username={}", user.getUserId(), user.getName());
         return user.getUserId();
     }
 

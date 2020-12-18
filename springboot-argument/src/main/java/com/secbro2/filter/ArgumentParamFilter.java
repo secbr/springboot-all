@@ -3,7 +3,6 @@ package com.secbro2.filter;
 import com.secbro2.util.JsonUtils;
 import com.secbro2.util.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
@@ -24,7 +23,6 @@ import java.util.*;
  **/
 @Slf4j
 @Component
-@Order(1)
 public class ArgumentParamFilter implements Filter {
 
     @Override
