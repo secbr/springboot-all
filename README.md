@@ -13,4 +13,4 @@ CSDN学院《SpringBoot视频教程全家桶》中案例：https://edu.csdn.net/
 
 微信公众号“程序新视界”中技术文章相关代码部分。
 
-![程序新视界](http://www.choupangxia.com/wp-content/uploads/2019/11/new-card.png)
+![程序新视界](https://www.choupangxia.com/wp-content/uploads/2019/07/weixin.jpg)
