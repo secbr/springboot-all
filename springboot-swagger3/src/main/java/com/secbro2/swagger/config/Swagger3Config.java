@@ -30,7 +30,6 @@ public class Swagger3Config implements WebMvcConfigurer {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .select()
-                //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(Operation.class))
                 .paths(PathSelectors.any())
                 .build()
@@ -45,7 +44,7 @@ public class Swagger3Config implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Swagger3接口文档")
-                .description("如有疑问，请联系二师兄")
+                .description("如有疑问，可联系二师兄，微信：zhuan2quan")
                 .contact(new Contact("二师兄", "https://www.choupangxia.com/", "secbro2@gmail.com"))
                 .version("1.0")
                 .build();
@@ -57,24 +56,8 @@ public class Swagger3Config implements WebMvcConfigurer {
     private List<RequestParameter> getGlobalRequestParameters() {
         List<RequestParameter> parameters = new ArrayList<>();
         parameters.add(new RequestParameterBuilder()
-                .name("appId")
-                .description("平台id")
-                .required(true)
-                .in(ParameterType.QUERY)
-                .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
-                .required(false)
-                .build());
-        parameters.add(new RequestParameterBuilder()
                 .name("uuid")
-                .description("设备id")
-                .required(true)
-                .in(ParameterType.QUERY)
-                .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
-                .required(false)
-                .build());
-        parameters.add(new RequestParameterBuilder()
-                .name("version")
-                .description("版本号")
+                .description("设备uuid")
                 .required(true)
                 .in(ParameterType.QUERY)
                 .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
