@@ -1,10 +1,10 @@
 package com.secbro2.swagger.config;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.*;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.schema.ScalarType;
@@ -20,9 +20,10 @@ import java.util.List;
  * @version 1.0
  * @date 2021/5/7
  **/
+@EnableKnife4j
 @Configuration
 @EnableOpenApi
-public class Swagger3Config implements WebMvcConfigurer {
+public class Swagger3Config {
 
     @Bean
     public Docket createRestApi() {
