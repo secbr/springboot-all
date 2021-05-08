@@ -17,4 +17,4 @@ CSDN学院《SpringBoot视频教程全家桶》中案例：https://edu.csdn.net/
 
 ### SpringBoot技术文章
 
-- 《[SpringBoot集成Swagger3，还想来份离线文档？真酷炫](https://mp.weixin.qq.com/s/sZ8w-Qa8pD4DOzv-XzA5dA)
+- 《[SpringBoot集成Swagger3，还想来份离线文档？真酷炫](https://mp.weixin.qq.com/s/sZ8w-Qa8pD4DOzv-XzA5dA)》
