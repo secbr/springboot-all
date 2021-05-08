@@ -14,3 +14,7 @@ CSDN学院《SpringBoot视频教程全家桶》中案例：https://edu.csdn.net/
 微信公众号“程序新视界”中技术文章相关代码部分。
 
 ![程序新视界](https://www.choupangxia.com/wp-content/uploads/2019/07/weixin.jpg)
+
+### SpringBoot技术文章
+
+- 《[SpringBoot集成Swagger3，还想来份离线文档？真酷炫](https://mp.weixin.qq.com/s/sZ8w-Qa8pD4DOzv-XzA5dA)
