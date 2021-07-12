@@ -1,0 +1,18 @@
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    auditevents:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    jmx:
+      exposure:
+        include: '*'
+  server:
+    # 自定义端口
+    port: 8080
+    # 不允许远程管理连接，安全性考虑
+    address: 127.0.0.1
