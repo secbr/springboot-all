@@ -2,6 +2,8 @@ management:
   endpoint:
     shutdown:
       enabled: true
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:
@@ -9,8 +11,19 @@ management:
     jmx:
       exposure:
         include: '*'
-  server:
-    # 自定义端口
-    port: 8080
-    # 不允许远程管理连接，安全性考虑
-    address: 127.0.0.1
+  health:
+    db:
+      enabled: true
+
+info:
+  user:
+    type: 公众号
+    name: 程序新视界
+    wechat: zhuan2quan
+
+#spring:
+#  datasource:
+#    url: jdbc:mysql://xxx:3333/xxx?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
